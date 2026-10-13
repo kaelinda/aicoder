@@ -55,16 +55,14 @@ export default function HomePage() {
                 <span className="kicker-line" aria-hidden="true" />
                 <span>iOS · Web · AI Agent</span>
               </p>
-              <h1 id="hero-name" className="hero-title enter enter-2">
-                <span className="terminal-line">$ agent.compile("idea")</span>
-              </h1>
-              <p className="hero-en enter enter-3">{profile.nameEn}</p>
-              <p className="hero-tagline enter enter-4">{profile.tagline}</p>
-              <p className="hero-resolved enter enter-5">
+              <span className="terminal-line enter enter-2">$ agent.compile("idea")</span>
+              <h1 id="hero-name" className="hero-title enter enter-7">
                 把想法编译成产品
-              </p>
+              </h1>
+              <p className="hero-en enter enter-8">{profile.nameEn}</p>
+              <p className="hero-tagline enter enter-9">{profile.tagline}</p>
             </div>
-            <aside className="hero-plate enter enter-4" aria-hidden="true">
+            <aside className="hero-plate enter enter-6" aria-hidden="true">
               <span className="seal seal-lg" aria-hidden="true">码</span>
               <ul className="plate-list">
                 <li>01</li>
