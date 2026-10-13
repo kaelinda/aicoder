@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+:root {
+  --background: #110f0d;
+  --foreground: #f6f1e8;
+  --body: #e7dccf;
+  --muted: #cfc3b4;
+  --surface: #1c1916;
+  --line: rgba(246, 241, 232, 0.14);
+  --accent: #ef6d52;
+  --accent-soft: rgba(239, 109, 82, 0.12);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-body: var(--body);
+  --color-muted: var(--muted);
+  --color-surface: var(--surface);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --font-sans: var(--font-geist-sans), "PingFang SC", "Hiragino Sans GB",
+    "Noto Sans SC", "WenQuanYi Micro Hei", "Microsoft YaHei",
+    "Droid Sans Fallback", sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo,
+    monospace;
+}
+
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(
+      ellipse 72% 42% at 0% -8%,
+      rgba(239, 109, 82, 0.16),
+      transparent 52%
+    ),
+    var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), "PingFang SC", "Hiragino Sans GB",
+    "Noto Sans SC", "WenQuanYi Micro Hei", "Microsoft YaHei",
+    "Droid Sans Fallback", sans-serif;
+}
+
+::selection {
+  background: rgba(239, 109, 82, 0.35);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: 0.75rem;
+  z-index: 50;
+  transform: translateY(-150%);
+  border-radius: 0.375rem;
+  background: var(--foreground);
+  color: var(--background);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+.seal {
+  display: inline-grid;
+  width: 2.25rem;
+  height: 2.25rem;
+  flex: none;
+  place-items: center;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+section[id] {
+  scroll-margin-top: 5.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .skip-link {
+    transition: none;
+  }
+}
