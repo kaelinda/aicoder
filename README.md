@@ -1,6 +1,6 @@
 # AI码人士
 
-周作松的个人主页。中文单页，深色，没有后端。
+AI码人士（AI Coder）的个人主页。中文单页，支持浅色与深色，没有后端。
 
 计划中的生产地址是 [https://aicoder.vercel.app](https://aicoder.vercel.app)。项目名用 `aicoder` 时，Vercel 会给出这个子域名。
 

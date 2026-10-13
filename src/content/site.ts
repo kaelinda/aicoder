@@ -1,5 +1,6 @@
 export const profile = {
-  name: "周作松",
+  name: "AI码人士",
+  nameEn: "AI Coder",
   handle: "AI码人士",
   tagline: "iOS + AI Agent 开发者",
 } as const;

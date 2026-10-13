@@ -1,6 +1,7 @@
 {
   "name": "aicoder",
   "version": "0.1.0",
+  "description": "AI码人士（AI Coder）的个人主页",
   "private": true,
   "scripts": {
     "dev": "next dev",

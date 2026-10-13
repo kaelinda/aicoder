@@ -1,40 +1,60 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Instrument_Sans, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
+  variable: "--font-instrument-sans",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const instrumentSerif = Instrument_Serif({
+  weight: "400",
+  style: "italic",
   subsets: ["latin"],
+  variable: "--font-instrument-serif",
+  display: "swap",
 });
+
+const description =
+  "AI码人士（AI Coder），iOS + AI Agent 开发者。日常使用 Swift / SwiftUI，也做 AI Agent 与内容创作。";
 
 export const metadata: Metadata = {
-  title: "周作松 · AI码人士",
-  description:
-    "周作松（AI码人士），iOS + AI Agent 开发者。日常使用 Swift / SwiftUI，也做 AI Agent 与内容创作。",
+  title: "AI码人士 · AI Coder",
+  description,
+  applicationName: "AI码人士",
+  authors: [{ name: "AI码人士" }],
+  creator: "AI码人士",
   metadataBase: new URL("https://aicoder.vercel.app"),
   alternates: { canonical: "/" },
   openGraph: {
-    title: "周作松 · AI码人士",
+    title: "AI码人士 · AI Coder",
     description: "iOS + AI Agent 开发者",
     url: "https://aicoder.vercel.app",
     siteName: "AI码人士",
     locale: "zh_CN",
     type: "website",
   },
+  twitter: {
+    card: "summary",
+    title: "AI码人士 · AI Coder",
+    description: "iOS + AI Agent 开发者",
+  },
 };
+
+const themeBoot = `(function(){try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();`;
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="zh-CN"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      suppressHydrationWarning
+      className={`${instrumentSans.variable} ${instrumentSerif.variable}`}
     >
-      <body className="min-h-full">{children}</body>
+      <head>
+        <script id="theme-boot" dangerouslySetInnerHTML={{ __html: themeBoot }} />
+      </head>
+      <body>{children}</body>
     </html>
   );
 }
