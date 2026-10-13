@@ -7,7 +7,7 @@ export const profile = {
 
 export const about = [
   "本职做 iOS。日常用 Swift 和 SwiftUI 写应用，也会碰一些 Web 前端和后端。",
-  "业余在做 AI Agent 相关的项目，常用 Claude Code、Codex 和 Grok Bot。内容写在公众号、小红书、知乎和 X，主要是开发笔记和工具体验。",
+  "业余在做 AI Agent 相关项目，常用 Claude Code、Codex 与 Grok Bot。内容写在公众号、小红书、知乎和 X，主要是开发笔记与工具体验。",
 ] as const;
 
 export const skills = [
@@ -25,20 +25,20 @@ export const skills = [
   },
   {
     title: "LLM tooling",
-    detail: "围绕大语言模型构建工具和工作流，提升开发效率。",
+    detail: "围绕大语言模型构建工具与工作流，提升开发效率。",
   },
   {
     title: "Automation",
-    detail: "用脚本和工具自动化重复任务，专注于创造性工作。",
+    detail: "用脚本和工具自动化重复任务，把精力留给创造性工作。",
   },
   {
     title: "Product",
-    detail: "从想法到产品的全流程：设计、开发、测试、发布。",
+    detail: "从想法到产品：设计、开发、测试、发布。",
   },
 ] as const;
 
 export const links = [
-  { label: "GitHub", href: "#" },
+  { label: "GitHub", href: "https://github.com/kaelinda" },
   { label: "X", href: "#" },
   { label: "Blog", href: "#" },
   { label: "Email", href: "#" },

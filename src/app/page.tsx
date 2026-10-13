@@ -1,6 +1,7 @@
-import type React from "react";
 import { about, links, profile, skills } from "@/content/site";
 import { ThemeToggle } from "./theme-toggle";
+
+const bentoSpans = ["bento-span-a", "bento-span-b", "bento-span-c", "bento-span-d", "bento-span-e", "bento-span-f"] as const;
 
 export default function HomePage() {
   return (
@@ -15,7 +16,10 @@ export default function HomePage() {
             <span className="seal" aria-hidden="true">
               码
             </span>
-            <span>{profile.handle}</span>
+            <span className="brand-text">
+              <span className="brand-zh">{profile.handle}</span>
+              <span className="brand-en">{profile.nameEn}</span>
+            </span>
           </a>
           <div className="header-actions">
             <nav className="site-nav" aria-label="页内导航">
@@ -28,7 +32,7 @@ export default function HomePage() {
         </div>
       </header>
 
-      <div className="ticker">
+      <div className="ticker" aria-hidden="true">
         <div className="ticker-track">
           <div className="ticker-item">01 终端即杂志</div>
           <div className="ticker-item">02 代码如散文</div>
@@ -36,7 +40,6 @@ export default function HomePage() {
           <div className="ticker-item">04 Agent 为笔</div>
           <div className="ticker-item">05 产品是纸</div>
           <div className="ticker-item">06 迭代是章</div>
-          {/* Duplicate for seamless loop */}
           <div className="ticker-item">01 终端即杂志</div>
           <div className="ticker-item">02 代码如散文</div>
           <div className="ticker-item">03 像素皆诗歌</div>
@@ -50,27 +53,27 @@ export default function HomePage() {
         <section id="top" className="hero" aria-labelledby="hero-name">
           <div className="shell hero-grid">
             <div className="hero-copy">
-              <p className="kicker enter" style={{ animationDelay: '0.2s' }}>
+              <p className="kicker enter enter-1">
                 <span className="kicker-index">01</span>
                 <span className="kicker-line" aria-hidden="true" />
                 <span>iOS · Web · AI Agent</span>
               </p>
-              <span className="terminal-line enter enter-2" style={{ animationDelay: '0.2s' }}>$ agent.compile("idea")</span>
-              <h1 id="hero-name" className="hero-title enter" style={{ animationDelay: '2.9s' }}>
+              <span className="terminal-line enter enter-2">$ agent.compile(&quot;idea&quot;)</span>
+              <h1 id="hero-name" className="hero-title enter enter-3">
                 把想法编译成产品
               </h1>
-              <p className="hero-en enter" style={{ animationDelay: '3.1s' }}>{profile.nameEn}</p>
-              <p className="hero-tagline enter" style={{ animationDelay: '3.3s' }}>{profile.tagline}</p>
+              <p className="hero-en enter enter-4">{profile.nameEn}</p>
+              <p className="hero-tagline enter enter-5">{profile.tagline}</p>
             </div>
             <aside className="hero-plate enter enter-6" aria-hidden="true">
-              <span className="seal seal-lg" aria-hidden="true">码</span>
-              <p className="plate-year">2026</p>
+              <span className="seal seal-lg">码</span>
+              <p className="plate-year">Est. 2026</p>
             </aside>
           </div>
         </section>
 
         <section id="about" className="section" aria-labelledby="about-heading">
-          <div className="shell">
+          <div className="shell about-layout">
             <div className="section-head">
               <span className="section-index">02</span>
               <h2 id="about-heading">关于</h2>
@@ -92,72 +95,17 @@ export default function HomePage() {
               <h2 id="skills-heading">技能 / 方向</h2>
             </div>
             <ul className="bento">
-              {skills.map((skill, index) => {
-                let style = {};
-                if (index === 0) {
-                  // iOS / Swift: large, cols 1-7, row 1
-                  style = {
-                    gridColumnStart: 1,
-                    gridColumnEnd: 7,
-                    gridRowStart: 1,
-                    gridRowEnd: 2,
-                  };
-                } else if (index === 1) {
-                  // SwiftUI: medium, cols 7-10, row 1
-                  style = {
-                    gridColumnStart: 7,
-                    gridColumnEnd: 10,
-                    gridRowStart: 1,
-                    gridRowEnd: 2,
-                  };
-                } else if (index === 2) {
-                  // AI Agents: medium, cols 10-13, row 1
-                  style = {
-                    gridColumnStart: 10,
-                    gridColumnEnd: 13,
-                    gridRowStart: 1,
-                    gridRowEnd: 2,
-                  };
-                } else if (index === 3) {
-                  // LLM tooling: cols 1-5, row 2
-                  style = {
-                    gridColumnStart: 1,
-                    gridColumnEnd: 5,
-                    gridRowStart: 2,
-                    gridRowEnd: 3,
-                  };
-                } else if (index === 4) {
-                  // Automation: cols 5-9, row 2
-                  style = {
-                    gridColumnStart: 5,
-                    gridColumnEnd: 9,
-                    gridRowStart: 2,
-                    gridRowEnd: 3,
-                  };
-                } else if (index === 5) {
-                  // Product: cols 9-13, row 2
-                  style = {
-                    gridColumnStart: 9,
-                    gridColumnEnd: 13,
-                    gridRowStart: 2,
-                    gridRowEnd: 3,
-                  };
-                }
-                return (
-                  <li
-                    key={skill.title}
-                    style={style as React.CSSProperties}
-                  >
-                    <article className="card">
-                      <span className="card-index">{String(index + 1).padStart(2, "0")}</span>
-                      <div className="card-body">
-                        <h3>{skill.title}</h3>
-                        <p>{skill.detail}</p>
-                      </div>
-                    </article>
-                  </li>
-                );
-              })}
+              {skills.map((skill, index) => (
+                <li key={skill.title} className={bentoSpans[index]}>
+                  <article className="card">
+                    <span className="card-index">{String(index + 1).padStart(2, "0")}</span>
+                    <div className="card-body">
+                      <h3>{skill.title}</h3>
+                      <p>{skill.detail}</p>
+                    </div>
+                  </article>
+                </li>
+              ))}
             </ul>
           </div>
         </section>
@@ -168,26 +116,34 @@ export default function HomePage() {
               <span className="section-index">04</span>
               <h2 id="links-heading">外链</h2>
             </div>
-            <p className="section-note">以下为占位链接，尚未指向真实主页。</p>
-            <ul className="link-grid">
-              {links.map((link, index) => (
-                <li key={link.label}>
-                  <a
-                    href={link.href}
-                    className="link-card"
-                    aria-label={`${link.label}（占位链接，待填写）`}
-                  >
-                    <span className="card-index">{String(index + 1).padStart(2, "0")}</span>
-                    <span className="link-label">{link.label}</span>
-                    <span className="link-meta">
-                      <span className="badge">待填写</span>
-                      <span className="arrow" aria-hidden="true">
-                        →
+            <p className="section-note">部分链接待填写，GitHub 已就绪。</p>
+            <ul className="link-list">
+              {links.map((link, index) => {
+                const isPlaceholder = link.href === "#";
+                return (
+                  <li key={link.label}>
+                    <a
+                      href={link.href}
+                      className="link-row"
+                      {...(isPlaceholder
+                        ? { "aria-label": `${link.label}（占位链接，待填写）` }
+                        : {
+                            target: "_blank",
+                            rel: "noopener noreferrer",
+                          })}
+                    >
+                      <span className="link-index">{String(index + 1).padStart(2, "0")}</span>
+                      <span className="link-label">{link.label}</span>
+                      <span className="link-meta">
+                        {isPlaceholder ? <span className="badge">待填写</span> : <span className="link-hint">开新标签</span>}
+                        <span className="arrow" aria-hidden="true">
+                          →
+                        </span>
                       </span>
-                    </span>
-                  </a>
-                </li>
-              ))}
+                    </a>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </section>
