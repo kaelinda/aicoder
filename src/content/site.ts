@@ -12,27 +12,34 @@ export const about = [
 
 export const skills = [
   {
-    title: "Swift / SwiftUI",
+    title: "iOS / Swift",
     detail: "本职方向。用 Swift 和 SwiftUI 做 iOS 应用。",
+  },
+  {
+    title: "SwiftUI",
+    detail: "苹果的声明式 UI 框架，构建流畅的原生界面。",
   },
   {
     title: "AI Agents",
     detail: "把编码代理接进自己的项目和工作流。",
   },
   {
-    title: "Claude Code / Codex / Grok Bot",
-    detail: "目前常用的几款编码代理，用来写代码、改项目、跑流程。",
+    title: "LLM tooling",
+    detail: "围绕大语言模型构建工具和工作流，提升开发效率。",
   },
   {
-    title: "内容创作（博客 / 小红书 / 知乎）",
-    detail: "把做过的东西写成以后还能看懂的笔记。",
+    title: "Automation",
+    detail: "用脚本和工具自动化重复任务，专注于创造性工作。",
+  },
+  {
+    title: "Product",
+    detail: "从想法到产品的全流程：设计、开发、测试、发布。",
   },
 ] as const;
 
 export const links = [
   { label: "GitHub", href: "#" },
-  { label: "X / Twitter", href: "#" },
-  { label: "博客", href: "#" },
-  { label: "小红书", href: "#" },
-  { label: "知乎", href: "#" },
+  { label: "X", href: "#" },
+  { label: "Blog", href: "#" },
+  { label: "Email", href: "#" },
 ] as const;

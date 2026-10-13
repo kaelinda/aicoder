@@ -1,7 +1,6 @@
+import type React from "react";
 import { about, links, profile, skills } from "@/content/site";
 import { ThemeToggle } from "./theme-toggle";
-
-const plateItems = ["Swift / SwiftUI", "Web 前端", "AI Agents"] as const;
 
 export default function HomePage() {
   return (
@@ -29,11 +28,26 @@ export default function HomePage() {
         </div>
       </header>
 
+      <div className="ticker">
+        <div className="ticker-track">
+          <div className="ticker-item">01 终端即杂志</div>
+          <div className="ticker-item">02 代码如散文</div>
+          <div className="ticker-item">03 像素皆诗歌</div>
+          <div className="ticker-item">04 Agent 为笔</div>
+          <div className="ticker-item">05 产品是纸</div>
+          <div className="ticker-item">06 迭代是章</div>
+          {/* Duplicate for seamless loop */}
+          <div className="ticker-item">01 终端即杂志</div>
+          <div className="ticker-item">02 代码如散文</div>
+          <div className="ticker-item">03 像素皆诗歌</div>
+          <div className="ticker-item">04 Agent 为笔</div>
+          <div className="ticker-item">05 产品是纸</div>
+          <div className="ticker-item">06 迭代是章</div>
+        </div>
+      </div>
+
       <main id="main">
         <section id="top" className="hero" aria-labelledby="hero-name">
-          <span className="hero-mark" aria-hidden="true">
-            码
-          </span>
           <div className="shell hero-grid">
             <div className="hero-copy">
               <p className="kicker enter">
@@ -42,17 +56,23 @@ export default function HomePage() {
                 <span>iOS · Web · AI Agent</span>
               </p>
               <h1 id="hero-name" className="hero-title enter enter-2">
-                {profile.name}
+                <span className="terminal-line">$ agent.compile("idea")</span>
               </h1>
               <p className="hero-en enter enter-3">{profile.nameEn}</p>
               <p className="hero-tagline enter enter-4">{profile.tagline}</p>
+              <p className="hero-resolved enter enter-5">
+                把想法编译成产品
+              </p>
             </div>
             <aside className="hero-plate enter enter-4" aria-hidden="true">
-              <span className="seal seal-lg">码</span>
+              <span className="seal seal-lg" aria-hidden="true">码</span>
               <ul className="plate-list">
-                {plateItems.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
+                <li>01</li>
+                <li>02</li>
+                <li>03</li>
+                <li>04</li>
+                <li>05</li>
+                <li>06</li>
               </ul>
               <p className="plate-year">2026</p>
             </aside>
@@ -82,22 +102,50 @@ export default function HomePage() {
               <h2 id="skills-heading">技能 / 方向</h2>
             </div>
             <ul className="bento">
-              {skills.map((skill, index) => (
-                <li
-                  key={skill.title}
-                  className={
-                    index === 0 ? "bento-feature" : index === skills.length - 1 ? "bento-wide" : undefined
-                  }
-                >
-                  <article className="card">
-                    <span className="card-index">{String(index + 1).padStart(2, "0")}</span>
-                    <div className="card-body">
-                      <h3>{skill.title}</h3>
-                      <p>{skill.detail}</p>
-                    </div>
-                  </article>
-                </li>
-              ))}
+              {skills.map((skill, index) => {
+                // Define grid areas for varied sizes
+                let spanCols = 6;
+                let spanRows = 2;
+                if (index === 0) {
+                  // iOS / Swift: large
+                  spanCols = 6;
+                  spanRows = 2;
+                } else if (index === 1) {
+                  // SwiftUI: medium
+                  spanCols = 4;
+                  spanRows = 1;
+                } else if (index === 2) {
+                  // AI Agents: medium
+                  spanCols = 4;
+                  spanRows = 1;
+                } else if (index === 3) {
+                  // LLM tooling: small
+                  spanCols = 3;
+                  spanRows = 1;
+                } else if (index === 4) {
+                  // Automation: small
+                  spanCols = 3;
+                  spanRows = 1;
+                } else if (index === 5) {
+                  // Product: large
+                  spanCols = 6;
+                  spanRows = 2;
+                }
+                return (
+                  <li
+                    key={skill.title}
+                    style={{ "--c": spanCols, "--r": spanRows } as React.CSSProperties}
+                  >
+                    <article className="card">
+                      <span className="card-index">{String(index + 1).padStart(2, "0")}</span>
+                      <div className="card-body">
+                        <h3>{skill.title}</h3>
+                        <p>{skill.detail}</p>
+                      </div>
+                    </article>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </section>
