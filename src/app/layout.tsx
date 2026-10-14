@@ -1,18 +1,11 @@
 import type { Metadata } from "next";
-import { Instrument_Sans, Instrument_Serif } from "next/font/google";
+import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const instrumentSans = Instrument_Sans({
+const mono = JetBrains_Mono({
   subsets: ["latin"],
-  variable: "--font-instrument-sans",
-  display: "swap",
-});
-
-const instrumentSerif = Instrument_Serif({
-  weight: "400",
-  style: "italic",
-  subsets: ["latin"],
-  variable: "--font-instrument-serif",
+  weight: ["400", "500", "700", "800"],
+  variable: "--font-jetbrains",
   display: "swap",
 });
 
@@ -51,7 +44,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="zh-CN"
       suppressHydrationWarning
-      className={`${instrumentSans.variable} ${instrumentSerif.variable}`}
+      className={mono.variable}
     >
       <head>
         <script id="theme-boot" dangerouslySetInnerHTML={{ __html: themeBoot }} />

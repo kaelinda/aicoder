@@ -39,7 +39,25 @@ export const skills = [
 
 export const links = [
   { label: "GitHub", href: "https://github.com/kaelinda" },
-  { label: "X", href: "#" },
-  { label: "Blog", href: "#" },
-  { label: "Email", href: "#" },
+  { label: "X", href: "https://x.com/KaelLVLinda" }
+] as const;
+
+export const moos = [
+  "不做牛马，做牛码",
+  "代码写得牛，产品才够硬",
+  "今天的 bug 今天修",
+  "Agent 跑腿，我拍板",
+  "if (code === 牛) ship();",
+  "哞 —— build passed",
+] as const;
+
+export const ticker = [
+  "$ cowsay 牛码",
+  "git commit -m \"牛\"",
+  "git push --force-moo",
+  "404: 牛马 not found",
+  "sudo make me 牛",
+  "牛码 ≠ 牛马",
+  "rm -rf ./内卷",
+  "LGTM, moo",
 ] as const;

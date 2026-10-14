@@ -1,7 +1,12 @@
-import { about, links, profile, skills } from "@/content/site";
+import { about, links, profile, skills, ticker } from "@/content/site";
+import { Cowsay } from "./cowsay";
 import { ThemeToggle } from "./theme-toggle";
 
-const bentoSpans = ["bento-span-a", "bento-span-b", "bento-span-c", "bento-span-d", "bento-span-e", "bento-span-f"] as const;
+const WALKER = String.raw` ^__^
+ (oo)\_______
+ (__)\       )\/\
+     ||----w |
+     ||     ||`;
 
 export default function HomePage() {
   return (
@@ -12,20 +17,17 @@ export default function HomePage() {
 
       <header className="site-header">
         <div className="shell header-bar">
-          <a href="#top" className="brand">
-            <span className="seal" aria-hidden="true">
-              码
+          <a href="#top" className="brand" aria-label={`${profile.handle} 首页`}>
+            <span className="brand-mark" aria-hidden="true">
+              <span className="angle">&lt;</span>牛<span className="angle">/&gt;</span>
             </span>
-            <span className="brand-text">
-              <span className="brand-zh">{profile.handle}</span>
-              <span className="brand-en">{profile.nameEn}</span>
-            </span>
+            <span className="brand-zh">{profile.handle}</span>
           </a>
           <div className="header-actions">
             <nav className="site-nav" aria-label="页内导航">
-              <a href="#about">关于</a>
-              <a href="#skills">技能</a>
-              <a href="#links">外链</a>
+              <a href="#about">whoami</a>
+              <a href="#skills">ls skills</a>
+              <a href="#links">cat links</a>
             </nav>
             <ThemeToggle />
           </div>
@@ -34,50 +36,56 @@ export default function HomePage() {
 
       <div className="ticker" aria-hidden="true">
         <div className="ticker-track">
-          <div className="ticker-item">01 终端即杂志</div>
-          <div className="ticker-item">02 代码如散文</div>
-          <div className="ticker-item">03 像素皆诗歌</div>
-          <div className="ticker-item">04 Agent 为笔</div>
-          <div className="ticker-item">05 产品是纸</div>
-          <div className="ticker-item">06 迭代是章</div>
-          <div className="ticker-item">01 终端即杂志</div>
-          <div className="ticker-item">02 代码如散文</div>
-          <div className="ticker-item">03 像素皆诗歌</div>
-          <div className="ticker-item">04 Agent 为笔</div>
-          <div className="ticker-item">05 产品是纸</div>
-          <div className="ticker-item">06 迭代是章</div>
+          {[...ticker, ...ticker].map((t, i) => (
+            <span key={i} className="ticker-item">
+              {t}
+            </span>
+          ))}
         </div>
       </div>
 
       <main id="main">
         <section id="top" className="hero" aria-labelledby="hero-name">
+          <span className="hero-ghost" aria-hidden="true">
+            牛
+          </span>
           <div className="shell hero-grid">
             <div className="hero-copy">
               <p className="kicker enter enter-1">
-                <span className="kicker-index">01</span>
-                <span className="kicker-line" aria-hidden="true" />
-                <span>iOS · Web · AI Agent</span>
+                <span className="tag-chip">No.0001</span>
+                iOS · Web · AI Agent
               </p>
-              <span className="terminal-line enter enter-2">$ agent.compile(&quot;idea&quot;)</span>
-              <h1 id="hero-name" className="hero-title enter enter-3">
-                把想法编译成产品
+              <h1 id="hero-name" className="hero-title enter enter-2">
+                不做牛马
+                <br />
+                做<em>牛</em>码
               </h1>
-              <p className="hero-en enter enter-4">{profile.nameEn}</p>
-              <p className="hero-tagline enter enter-5">{profile.tagline}</p>
+              <p className="hero-sub enter enter-3">
+                我是 <strong>{profile.handle}</strong>（{profile.nameEn}），{profile.tagline}。重复的活交给 Agent，我只写够牛的代码。
+              </p>
+              <div className="hero-cta enter enter-4">
+                <a href="#links" className="btn btn-solid">
+                  找我聊聊 →
+                </a>
+                <a href="#skills" className="btn btn-ghost">
+                  看看牛栏
+                </a>
+              </div>
             </div>
-            <aside className="hero-plate enter enter-6" aria-hidden="true">
-              <span className="seal seal-lg">码</span>
-              <p className="plate-year">Est. 2026</p>
-            </aside>
+            <div className="enter enter-5">
+              <Cowsay />
+            </div>
           </div>
         </section>
 
         <section id="about" className="section" aria-labelledby="about-heading">
           <div className="shell about-layout">
-            <div className="section-head">
-              <span className="section-index">02</span>
-              <h2 id="about-heading">关于</h2>
-            </div>
+            <h2 id="about-heading" className="section-head">
+              <span className="cmd">
+                <span className="prompt">$</span> whoami
+              </span>
+              <span className="section-zh">关于</span>
+            </h2>
             <div className="about-grid">
               {about.map((paragraph, index) => (
                 <p key={paragraph} className={index === 0 ? "about-lead" : "about-copy"}>
@@ -90,20 +98,18 @@ export default function HomePage() {
 
         <section id="skills" className="section" aria-labelledby="skills-heading">
           <div className="shell">
-            <div className="section-head">
-              <span className="section-index">03</span>
-              <h2 id="skills-heading">技能 / 方向</h2>
-            </div>
-            <ul className="bento">
+            <h2 id="skills-heading" className="section-head">
+              <span className="cmd">
+                <span className="prompt">$</span> ls ./skills
+              </span>
+              <span className="section-zh">技能 / 方向</span>
+            </h2>
+            <ul className="tags">
               {skills.map((skill, index) => (
-                <li key={skill.title} className={bentoSpans[index]}>
-                  <article className="card">
-                    <span className="card-index">{String(index + 1).padStart(2, "0")}</span>
-                    <div className="card-body">
-                      <h3>{skill.title}</h3>
-                      <p>{skill.detail}</p>
-                    </div>
-                  </article>
+                <li key={skill.title} className="ear-tag">
+                  <span className="tag-no">{String(index + 1).padStart(3, "0")}</span>
+                  <h3>{skill.title}</h3>
+                  <p>{skill.detail}</p>
                 </li>
               ))}
             </ul>
@@ -112,47 +118,42 @@ export default function HomePage() {
 
         <section id="links" className="section" aria-labelledby="links-heading">
           <div className="shell">
-            <div className="section-head">
-              <span className="section-index">04</span>
-              <h2 id="links-heading">外链</h2>
-            </div>
-            <p className="section-note">部分链接待填写，GitHub 已就绪。</p>
+            <h2 id="links-heading" className="section-head">
+              <span className="cmd">
+                <span className="prompt">$</span> cat links.txt
+              </span>
+              <span className="section-zh">外链</span>
+            </h2>
             <ul className="link-list">
-              {links.map((link, index) => {
-                const isPlaceholder = link.href === "#";
-                return (
-                  <li key={link.label}>
-                    <a
-                      href={link.href}
-                      className="link-row"
-                      {...(isPlaceholder
-                        ? { "aria-label": `${link.label}（占位链接，待填写）` }
-                        : {
-                            target: "_blank",
-                            rel: "noopener noreferrer",
-                          })}
-                    >
-                      <span className="link-index">{String(index + 1).padStart(2, "0")}</span>
-                      <span className="link-label">{link.label}</span>
-                      <span className="link-meta">
-                        {isPlaceholder ? <span className="badge">待填写</span> : <span className="link-hint">开新标签</span>}
-                        <span className="arrow" aria-hidden="true">
-                          →
-                        </span>
+              {links.map((link) => (
+                <li key={link.label}>
+                  <a href={link.href} className="link-row" target="_blank" rel="noopener noreferrer">
+                    <span className="link-cmd" aria-hidden="true">
+                      open
+                    </span>
+                    <span className="link-label">{link.label}</span>
+                    <span className="link-meta">
+                      <span className="link-hint">新标签打开</span>
+                      <span className="arrow" aria-hidden="true">
+                        →
                       </span>
-                    </a>
-                  </li>
-                );
-              })}
+                    </span>
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         </section>
       </main>
 
       <footer className="site-footer">
+        <div className="pasture" aria-hidden="true">
+          <pre className="walker">{WALKER}</pre>
+          <div className="grass" />
+        </div>
         <div className="shell footer-bar">
-          <p>© 2026 {profile.handle}</p>
-          <p className="footer-en">{profile.nameEn}</p>
+          <p>© 2026 {profile.handle} · 牛码出品</p>
+          <p className="footer-en">built by a 牛 with Next.js</p>
         </div>
       </footer>
     </>
