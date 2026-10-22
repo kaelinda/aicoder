@@ -126,11 +126,12 @@ button {
   }
 }
 @keyframes walk {
+  /* The ASCII cow faces left; let it fully leave before the loop restarts. */
   from {
-    transform: translateX(-16ch);
+    transform: translateX(100vw);
   }
   to {
-    transform: translateX(100vw);
+    transform: translateX(-100%);
   }
 }
 @keyframes bob {
